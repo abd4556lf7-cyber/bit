@@ -1,0 +1,428 @@
+/* ===========================
+   GENERAL
+=========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Cairo',sans-serif;
+background:linear-gradient(135deg,#091540,#311B92,#6A1B9A,#E91E63);
+background-size:400% 400%;
+animation:bgMove 12s infinite alternate;
+overflow-x:hidden;
+min-height:100vh; /* تعديل: عشان الشاشة تمط مع المحتوى في الموبايل */
+padding: 20px 10px; /* تعديل: مسافة أمان فوق وتحت */
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+@keyframes bgMove{
+0%{background-position:left;}
+100%{background-position:right;}
+}
+
+.container{
+position:relative;
+z-index:10;
+padding:15px;
+width: 100%;
+max-width: 800px;
+margin: auto;
+}
+
+.title{
+font-size:60px;
+margin-bottom:20px;
+animation:zoom 2s infinite;
+text-shadow:
+0 0 15px gold,
+0 0 30px orange,
+0 0 50px red;
+}
+
+@keyframes zoom{
+0%{ transform:scale(1); }
+50%{ transform:scale(1.05); }
+100%{ transform:scale(1); }
+}
+
+#name{
+font-size:42px;
+color:#FFD54F;
+margin-bottom:20px;
+}
+
+.message{
+font-size:22px;
+line-height:2;
+max-width:700px;
+margin:auto;
+opacity:0;
+animation:messageShow 3s ease forwards;
+animation-delay:1s;
+}
+
+button{
+margin-top:35px;
+padding:18px 45px;
+font-size:22px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+background:#FFD600;
+color:#222;
+font-weight:bold;
+transition:.4s;
+box-shadow:0 0 20px gold;
+position:relative;
+overflow:hidden;
+}
+
+button:hover{
+transform:scale(1.1);
+background:white;
+}
+
+button:active{
+transform:scale(.95);
+}
+
+/* ===========================
+STARS
+=========================== */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+left:0;
+top:0;
+background-image:radial-gradient(white 1px,transparent 1px);
+background-size:35px 35px;
+opacity:.4;
+animation:starsMove 60s linear infinite;
+}
+
+@keyframes starsMove{
+from{ transform:translateY(0); }
+to{ transform:translateY(-700px); }
+}
+
+/* ===========================
+PHOTOS
+=========================== */
+
+.photos{
+margin-top:40px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+width: 100%;
+}
+
+.photos img{
+width:170px;
+height:170px;
+object-fit:cover;
+border-radius:20px;
+border:4px solid white;
+box-shadow:0 0 25px rgba(255,255,255,.6);
+transition:.4s;
+}
+
+/* ===========================
+   BALLOONS
+=========================== */
+
+.balloons{
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+overflow:hidden;
+pointer-events:none;
+z-index:1;
+}
+
+.balloons::before,
+.balloons::after{
+content:"🎈 🎈 🎈 🎈 🎈 🎈 🎈 🎈 🎈";
+position:absolute;
+font-size:55px;
+width:100%;
+display:flex;
+justify-content:space-around;
+animation:floatUp 14s linear infinite;
+}
+
+.balloons::after{
+animation-delay:7s;
+top:100%;
+}
+
+@keyframes floatUp{
+0%{ transform:translateY(100vh); opacity:0; }
+10%{ opacity:1; }
+100%{ transform:translateY(-130vh); opacity:1; }
+}
+
+/* ===========================
+   CAKE
+=========================== */
+
+#effects{
+margin-top:40px;
+display:flex;
+justify-content:center;
+animation:showCake 2s ease;
+}
+
+.cake{
+position:relative;
+width:220px;
+height:220px;
+}
+
+.plate{
+position:absolute;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:220px;
+height:18px;
+background:#ddd;
+border-radius:50px;
+}
+
+.cake-body{
+position:absolute;
+bottom:18px;
+left:50%;
+transform:translateX(-50%);
+width:170px;
+height:100px;
+background:#ff9ec4;
+border-radius:12px;
+box-shadow:inset 0 -10px #ff6aa5;
+}
+
+.icing{
+position:absolute;
+bottom:100px;
+left:50%;
+transform:translateX(-50%);
+width:180px;
+height:28px;
+background:#fff;
+border-radius:20px;
+}
+
+.candle{
+position:absolute;
+bottom:128px;
+left:50%;
+transform:translateX(-50%);
+width:12px;
+height:45px;
+background:#4FC3F7;
+border-radius:5px;
+}
+
+.flame{
+position:absolute;
+bottom:172px;
+left:50%;
+transform:translateX(-50%);
+width:18px;
+height:28px;
+background:gold;
+border-radius:50%;
+box-shadow:
+0 0 15px yellow,
+0 0 30px orange,
+0 0 45px red;
+animation:fire 0.4s infinite alternate;
+}
+
+@keyframes fire{
+from{ transform:translateX(-50%) scale(1); }
+to{ transform:translateX(-50%) scale(1.2); }
+}
+
+/* ===========================
+   GLOW EFFECT
+=========================== */
+.title,
+#name{
+animation:glow 2s infinite alternate, zoom 2s infinite;
+}
+
+@keyframes glow{
+from{ text-shadow: 0 0 10px white, 0 0 20px gold; }
+to{ text-shadow: 0 0 20px yellow, 0 0 40px orange, 0 0 70px red; }
+}
+
+/* ===========================
+   CONFETTI
+=========================== */
+
+#confetti{
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+z-index:999;
+}
+
+.confetti{
+position:absolute;
+width:12px;
+height:12px;
+border-radius:2px;
+animation:confettiFall linear forwards;
+}
+
+@keyframes confettiFall{
+0%{ transform:translateY(-100px) rotate(0deg); opacity:1; }
+100%{ transform:translateY(110vh) rotate(720deg); opacity:0; }
+}
+
+/* ===========================
+   HEARTS
+=========================== */
+
+.heart{
+position:fixed;
+font-size:22px;
+pointer-events:none;
+animation:heartUp 6s linear forwards;
+z-index:900;
+}
+
+@keyframes heartUp{
+0%{ transform:translateY(0) scale(.5); opacity:0; }
+20%{ opacity:1; }
+100%{ transform:translateY(-120vh) scale(1.5); opacity:0; }
+}
+
+/* ===========================
+   FIREWORKS
+=========================== */
+
+.firework{
+position:fixed;
+width:8px;
+height:8px;
+border-radius:50%;
+pointer-events:none;
+animation:explode 1.2s ease-out forwards;
+}
+
+@keyframes explode{
+0%{ transform:scale(.3); opacity:1; }
+100%{ transform:scale(15); opacity:0; }
+}
+
+@keyframes showCake{
+from{ opacity:0; transform:translateY(100px); }
+to{ opacity:1; transform:translateY(0); }
+}
+
+/* ===========================
+   PHOTOS ANIMATIONS
+=========================== */
+
+.photos img:nth-child(1){ animation:photo1 4s infinite alternate; }
+.photos img:nth-child(2){ animation:photo2 4s infinite alternate; }
+.photos img:nth-child(3){ animation:photo3 4s infinite alternate; }
+
+@keyframes photo1{ to{ transform:rotate(-5deg) scale(1.02); } }
+@keyframes photo2{ to{ transform:translateY(-8px); } }
+@keyframes photo3{ to{ transform:rotate(5deg) scale(1.02); } }
+
+/* ===========================
+   FLOATING LIGHTS
+=========================== */
+
+.light{
+position:fixed;
+width:8px;
+height:8px;
+border-radius:50%;
+background:white;
+box-shadow:0 0 15px white;
+pointer-events:none;
+animation:lightFloat 10s linear forwards;
+z-index:2;
+}
+
+@keyframes lightFloat{
+0%{ transform:translateY(100vh) scale(0.5); opacity:0; }
+20%{ opacity:1; }
+100%{ transform:translateY(-120vh) scale(1.5); opacity:0; }
+}
+
+/* ===========================
+   MESSAGE EFFECT
+=========================== */
+
+@keyframes messageShow{
+from{ opacity:0; transform:translateY(30px); }
+to{ opacity:1; transform:translateY(0); }
+}
+
+/* ===========================
+   BUTTON EFFECT
+=========================== */
+
+button::after{
+content:"";
+position:absolute;
+top:-100%;
+left:-30%;
+width:40%;
+height:300%;
+background:rgba(255,255,255,.5);
+transform:rotate(25deg);
+transition:.6s;
+}
+
+button:hover::after{
+left:120%;
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{ width:8px; }
+::-webkit-scrollbar-thumb{ background:#FFD700; border-radius:20px; }
+::-webkit-scrollbar-track{ background:#222; }
+
+/* ===========================
+   RESPONSIVE (تعديل شامل للموبايل)
+=========================== */
+
+@media(max-width:768px){
+.title{ font-size:36px; } /* تصغير ليتناسب مع مقاسات الموبايل المتنوعة */
+#name{ font-size:28px; }
+.message{ font-size:16px; padding:0 10px; line-height: 1.8; }
+.photos { gap: 10px; margin-top: 25px; }
+.photos img{ width:120px; height:120px; border-radius: 12px; }
+.cake{ transform:scale(.75); } /* تصغير الكيكة عشان ما تاخدش مساحة الشاشة كلها */
+#effects { margin-top: 20px; }
+button{ font-size:18px; padding:12px 28px; margin-top: 20px; }
+.balloons::before, .balloons::after { font-size: 35px; } /* تصغير حجم البالونات الطايرة */
+}
